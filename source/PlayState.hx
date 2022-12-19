@@ -1981,9 +1981,9 @@ class PlayState extends MusicBeatState
 		super.update(elapsed);
 
 		if(ratingString == 'N/A') {
-			scoreTxt.text = 'Pontos: ' + songScore + ' • Erros: ' + songMisses + ' • Vida: ' + healthBar.percent + '%' + ' • Ranking: ' + ratingString;
+			scoreTxt.text = 'Pontos: ' + songScore + ' • Erros: ' + songMisses + ' • Vida: ' + healthBar.percent + ' • Ranking: ' + ratingString;
 		} else {
-			scoreTxt.text = 'Pontos: ' + songScore + ' • Erros: ' + songMisses + ' • Vida: ' + healthBar.percent + '%' + ' • Ranking: ' + ratingString + ' ' + Math.floor(ratingPercent * 100) + '%';
+			scoreTxt.text = 'Pontos: ' + songScore + ' • Erros: ' + songMisses + ' • Vida: ' + healthBar.percent + ' • Ranking: ' + ratingString + ' ' + Math.floor(ratingPercent * 100) + '%';
 		}
 
 		if(cpuControlled) {
@@ -3693,12 +3693,12 @@ class PlayState extends MusicBeatState
 		}
 
 		if(ClientPrefs.camZooms) {
-			FlxG.camera.zoom += 0.015;
-			camHUD.zoom += 0.03;
+			FlxG.camera.zoom += 1;
+			camHUD.zoom += 1;
 
 			if(!camZooming) { //Just a way for preventing it to be permanently zoomed until Skid & Pump hits a note
-				FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 0.5);
-				FlxTween.tween(camHUD, {zoom: 1}, 0.5);
+				FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 1);
+				FlxTween.tween(camHUD, {zoom: 1}, 1);
 			}
 		}
 
@@ -3989,7 +3989,7 @@ class PlayState extends MusicBeatState
 			if(!Math.isNaN(ratingPercent) && ratingPercent < 0) ratingPercent = 0;
 
 			if(Math.isNaN(ratingPercent)) {
-				ratingString = '(N/A)';
+				ratingString = '?';
 			} else if(ratingPercent >= 1) {
 				ratingPercent = 1;
 				ratingString = ratingStuff[ratingStuff.length-1][0]; //Uses last string
